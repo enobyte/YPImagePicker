@@ -186,7 +186,10 @@ public struct YPImagePickerConfiguration {
 public struct YPConfigLibrary {
     
     public var options: PHFetchOptions?
-
+    
+    /// Set this to false if you want to force the multile selection button to hide. Defaults to true.
+    public var showMultipleSelectionButton = true
+    
     /// Set this to true if you want to force the library output to be a squared image. Defaults to false.
     public var onlySquare = false
     

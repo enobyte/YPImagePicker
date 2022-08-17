@@ -24,6 +24,7 @@ final class YPAssetViewContainer: UIView {
         return v
     }()
     public var onlySquare = YPConfig.library.onlySquare
+    public var showMultipleSelectionButton = YPConfig.library.showMultipleSelectionButton
     public var isShown = true
     public var spinnerIsShown = false
     
@@ -88,9 +89,11 @@ final class YPAssetViewContainer: UIView {
         }
 
         // Multiple selection button
-        subviews(multipleSelectionButton)
-        multipleSelectionButton.size(42).trailing(15)
-        multipleSelectionButton.Bottom == self.Bottom - 15
+        if showMultipleSelectionButton {
+            subviews(multipleSelectionButton)
+            multipleSelectionButton.size(42).trailing(15)
+            multipleSelectionButton.Bottom == self.Bottom - 15
+        }
     }
 
     required init?(coder: NSCoder) {
