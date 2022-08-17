@@ -48,6 +48,29 @@ internal final class YPLibraryView: UIView {
         v.font = YPConfig.fonts.libaryWarningFont
         return v
     }()
+    internal lazy var cameraImageView: UIImageView = {
+        let v = UIImageView()
+        v.image = YPConfig.icons.cameraButtonImage
+        v.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cameraButtonTapped))
+        v.addGestureRecognizer(tapGesture)
+        return v
+    }()
+    internal lazy var galleryImageView: UIImageView = {
+        let v = UIImageView()
+        v.image = YPConfig.icons.galleryButtonImage
+        v.isUserInteractionEnabled = true
+        return v
+    }()
+    
+    internal lazy var galleryCameraView: UIView = {
+        let v = UIView()
+        v.subviews(cameraImageView, galleryImageView)
+        galleryImageView.width(35).height(35).right(16).top(8).bottom(8)
+        cameraImageView.width(35).height(35).top(8).bottom(8)
+        cameraImageView.Right == galleryImageView.Left - 8
+        return v
+    }()
 
     // MARK: - Private vars
 
@@ -81,6 +104,8 @@ internal final class YPLibraryView: UIView {
             }
         }
     }
+    
+    var onCameraTapped: (() -> Void)?
 
     // MARK: - Init
 
@@ -172,6 +197,7 @@ internal final class YPLibraryView: UIView {
                 collectionView
             ),
             line,
+            galleryCameraView,
             assetViewContainer.subviews(
                 assetZoomableView
             ),
@@ -181,7 +207,7 @@ internal final class YPLibraryView: UIView {
             )
         )
 
-        collectionContainerView.fillContainer()
+        collectionContainerView.fillContainer().left(16).right(16)
         collectionView.fillHorizontally().bottom(0)
 
         assetViewContainer.Bottom == line.Top
@@ -191,7 +217,9 @@ internal final class YPLibraryView: UIView {
         assetViewContainer.top(0).fillHorizontally().heightEqualsWidth()
         self.assetViewContainerConstraintTop = assetViewContainer.topConstraint
         assetZoomableView.fillContainer().heightEqualsWidth()
-        assetZoomableView.Bottom == collectionView.Top
+        assetZoomableView.Bottom == galleryCameraView.Top - 4
+        galleryCameraView.Bottom == collectionView.Top - 4
+        galleryCameraView.fillHorizontally()
         assetViewContainer.sendSubviewToBack(assetZoomableView)
 
         progressView.height(5).fillHorizontally()
@@ -200,5 +228,10 @@ internal final class YPLibraryView: UIView {
         |maxNumberWarningView|.bottom(0)
         maxNumberWarningView.Top == safeAreaLayoutGuide.Bottom - 40
         maxNumberWarningLabel.centerHorizontally().top(11)
+    }
+    
+    @objc
+    private func cameraButtonTapped() {
+        onCameraTapped?()
     }
 }

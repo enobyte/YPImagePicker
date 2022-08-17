@@ -29,6 +29,11 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     /// Private callbacks to YPImagePicker
     public var didClose:(() -> Void)?
     public var didSelectItems: (([YPMediaItem]) -> Void)?
+    public var onCameraTapped: (() -> Void)? {
+        didSet {
+            libraryVC?.onCameraTapped = onCameraTapped
+        }
+    }
     
     enum Mode {
         case library
@@ -60,6 +65,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         if YPConfig.screens.contains(.library) {
             libraryVC = YPLibraryVC()
             libraryVC?.delegate = self
+            libraryVC?.onCameraTapped = onCameraTapped
         }
         
         // Camera

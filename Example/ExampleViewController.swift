@@ -154,6 +154,10 @@ class ExampleViewController: UIViewController {
 
         /* Defines if the bottom bar should be hidden when showing the picker. Default is false */
         config.hidesBottomBar = false
+        
+        config.library.numberOfItemsInRow = 3
+        config.library.spacingBetweenItems = 9
+        
 
         config.maxCameraZoomFactor = 2.0
 

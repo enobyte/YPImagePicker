@@ -20,6 +20,11 @@ internal final class YPLibraryVC: UIViewController, YPPermissionCheckable {
     internal var currentlySelectedIndex: Int = 0
     internal let panGestureHelper = PanGestureHelper()
     internal var isInitialized = false
+    internal var onCameraTapped: (() -> Void)? {
+        didSet {
+            v.onCameraTapped = onCameraTapped
+        }
+    }
 
     // MARK: - Init
 
@@ -47,6 +52,8 @@ internal final class YPLibraryVC: UIViewController, YPPermissionCheckable {
 
         mediaManager.initialize()
         mediaManager.v = v
+        
+        v.onCameraTapped = onCameraTapped
 
         setupCollectionView()
         registerForLibraryChanges()
