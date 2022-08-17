@@ -322,7 +322,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     // When pressing "Next"
     @objc
-    func done() {
+    public func done() {
         guard let libraryVC = libraryVC else { ypLog("YPLibraryVC deallocated"); return }
         
         if mode == .library {
