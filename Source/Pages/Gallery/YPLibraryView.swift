@@ -6,6 +6,8 @@
 //  Copyright © 2015 Yummypets. All rights reserved.
 //
 
+import AVKit
+import MobileCoreServices
 import UIKit
 import Stevia
 import Photos
@@ -233,5 +235,85 @@ internal final class YPLibraryView: UIView {
     @objc
     private func cameraButtonTapped() {
         onCameraTapped?()
+    }
+}
+
+public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private var onImageSelected: ((UIImage, URL) -> Void)?
+    private var onVideoSelected: ((URL) -> Void)?
+    private var onCancel: (() -> Void)?
+    private let imagePicker = UIImagePickerController()
+    
+    public func presentPhotoLibrary(from: UIViewController, onImageSelected: @escaping ((UIImage, URL) -> Void), onCancel: (() -> Void)? = nil) {
+        self.onImageSelected = onImageSelected
+        self.onCancel = onCancel
+        imagePicker.modalPresentationStyle = .overCurrentContext
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        from.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    public func presentCamera(from: UIViewController, mediaTypes: [String] = ["public.image", "public.movie"], onImageSelected: @escaping ((UIImage, URL) -> Void), onVideoSelected: ((URL) -> Void)? = nil, onCancel: (() -> Void)? = nil) {
+        self.onImageSelected = onImageSelected
+        self.onVideoSelected = onVideoSelected
+        self.onCancel = onCancel
+        imagePicker.modalPresentationStyle = .overCurrentContext
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.mediaTypes = mediaTypes
+        imagePicker.sourceType = .camera
+        from.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    public func dismiss() {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        onCancel?()
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            var imageUrl: URL?
+            if picker.sourceType == UIImagePickerController.SourceType.camera {
+                let imgName = "\(UUID().uuidString).jpeg"
+                let documentDirectory = NSTemporaryDirectory()
+                let localPath = documentDirectory.appending(imgName)
+                
+                let data = image.jpegData(compressionQuality: 0.3)! as NSData
+                data.write(toFile: localPath, atomically: true)
+                imageUrl = URL.init(fileURLWithPath: localPath)
+            } else if let selectedImageUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+                imageUrl = selectedImageUrl
+            }
+            guard let imageUrl = imageUrl else {
+                return
+            }
+
+            onImageSelected?(image.keepOrientation(), imageUrl)
+        } else if
+            let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
+            mediaType == (kUTTypeMovie as String),
+            let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+              onVideoSelected?(url)
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+extension UIImage {
+    func keepOrientation() -> UIImage {
+        if imageOrientation == UIImage.Orientation.up {
+            return self
+        }
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(origin: CGPoint.zero, size: size))
+        let copy = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return copy ?? self
     }
 }

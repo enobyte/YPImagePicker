@@ -49,6 +49,8 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     var capturedImage: UIImage?
     
+    private lazy var imagePicker = ImagePicker()
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,7 +67,13 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         if YPConfig.screens.contains(.library) {
             libraryVC = YPLibraryVC()
             libraryVC?.delegate = self
-            libraryVC?.onCameraTapped = onCameraTapped
+            libraryVC?.onCameraTapped = { [weak self] in
+                guard let self = self else { return }
+                self.imagePicker.presentCamera(from: self) { [weak self] image, url in
+                    self?.didSelectItems?([YPMediaItem.photo(p: YPMediaPhoto(image: image,
+                                                                             fromCamera: true))])
+                }
+            }
         }
         
         // Camera
