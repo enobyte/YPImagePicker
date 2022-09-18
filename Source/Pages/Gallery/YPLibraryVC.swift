@@ -535,7 +535,10 @@ internal final class YPLibraryVC: UIViewController, YPPermissionCheckable {
                     self.delegate?.libraryViewFinishedLoading()
                 }
             } else {
-                guard let asset = selectedAssets.first?.asset else { return }
+                guard let asset = selectedAssets.first?.asset else {
+                    multipleItemsCallback([])
+                    return
+                }
                 switch asset.mediaType {
                 case .audio, .unknown:
                     return
