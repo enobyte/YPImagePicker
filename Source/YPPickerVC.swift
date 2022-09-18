@@ -69,10 +69,15 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             libraryVC?.delegate = self
             libraryVC?.onCameraTapped = { [weak self] in
                 guard let self = self else { return }
-                self.imagePicker.presentCamera(from: self) { [weak self] image, url in
-                    self?.didSelectItems?([YPMediaItem.photo(p: YPMediaPhoto(image: image,
-                                                                             fromCamera: true))])
-                }
+                self.imagePicker.presentCamera(
+                    from: self,
+                    onImageSelected: { [weak self] image, url in
+                        self?.didSelectItems?([YPMediaItem.photo(p: YPMediaPhoto(image: image,
+                                                                                 fromCamera: true))])
+                    },
+                    onVideoSelected: { [weak self] url in
+                        self?.didSelectItems?([YPMediaItem.video(v: YPMediaVideo(thumbnail: UIImage(), videoURL: url, fromCamera: true))])
+                    })
             }
         }
         
