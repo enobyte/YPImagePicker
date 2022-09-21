@@ -69,8 +69,12 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             libraryVC?.delegate = self
             libraryVC?.onCameraTapped = { [weak self] in
                 guard let self = self else { return }
+                var myParent = self.parent
+                while myParent?.parent != nil {
+                    myParent = myParent?.parent
+                }
                 self.imagePicker.presentCamera(
-                    from: self,
+                    from: myParent ?? self,
                     onImageSelected: { [weak self] image, url in
                         self?.didSelectItems?([YPMediaItem.photo(p: YPMediaPhoto(image: image,
                                                                                  fromCamera: true))])
