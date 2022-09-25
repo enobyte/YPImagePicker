@@ -247,7 +247,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
     public func presentPhotoLibrary(from: UIViewController, onImageSelected: @escaping ((UIImage, URL) -> Void), onCancel: (() -> Void)? = nil) {
         self.onImageSelected = onImageSelected
         self.onCancel = onCancel
-        imagePicker.modalPresentationStyle = .overCurrentContext
+        imagePicker.modalPresentationStyle = .fullScreen
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
