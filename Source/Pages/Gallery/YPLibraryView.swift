@@ -258,7 +258,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         self.onImageSelected = onImageSelected
         self.onVideoSelected = onVideoSelected
         self.onCancel = onCancel
-        imagePicker.modalPresentationStyle = .overCurrentContext
+        imagePicker.modalPresentationStyle = .fullScreen
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = mediaTypes
