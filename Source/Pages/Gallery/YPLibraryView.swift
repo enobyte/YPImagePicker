@@ -261,7 +261,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.modalPresentationStyle = .fullScreen
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
-        imagePicker.mediaTypes = mediaTypes
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)
         imagePicker.sourceType = .camera
         from.present(imagePicker, animated: true, completion: nil)
     }
