@@ -9,6 +9,32 @@
 import UIKit
 
 public struct YPColors {
+    internal init(tintColor: UIColor = UIColor.ypSystemBlue, navigationBarActivityIndicatorColor: UIColor? = nil, multipleItemsSelectedCircleColor: UIColor? = nil, photoVideoScreenBackgroundColor: UIColor = .offWhiteOrBlack, libraryScreenBackgroundColor: UIColor = .offWhiteOrBlack, safeAreaBackgroundColor: UIColor = .offWhiteOrBlack, assetViewBackgroundColor: UIColor = .offWhiteOrBlack, filterBackgroundColor: UIColor = .offWhiteOrBlack, selectionsBackgroundColor: UIColor = .offWhiteOrBlack, bottomMenuItemBackgroundColor: UIColor = .clear, bottomMenuItemSelectedTextColor: UIColor = .ypLabel, bottomMenuItemUnselectedTextColor: UIColor = .ypSecondaryLabel, cropOverlayColor: UIColor = .ypSystemBackground.withAlphaComponent(0.4), defaultNavigationBarColor: UIColor = .offWhiteOrBlack, trimmerMainColor: UIColor = .ypLabel, trimmerHandleColor: UIColor = .ypSystemBackground, positionLineColor: UIColor = .ypSystemBackground, coverSelectorBorderColor: UIColor = .offWhiteOrBlack, progressBarTrackColor: UIColor = .ypSystemBackground, progressBarCompletedColor: UIColor? = nil, albumBarTintColor: UIColor = .ypSystemBackground, albumTintColor: UIColor = .ypLabel, albumTitleColor: UIColor = .ypLabel) {
+        self.tintColor = tintColor
+        self.navigationBarActivityIndicatorColor = navigationBarActivityIndicatorColor
+        self.multipleItemsSelectedCircleColor = multipleItemsSelectedCircleColor
+        self.photoVideoScreenBackgroundColor = photoVideoScreenBackgroundColor
+        self.libraryScreenBackgroundColor = libraryScreenBackgroundColor
+        self.safeAreaBackgroundColor = safeAreaBackgroundColor
+        self.assetViewBackgroundColor = assetViewBackgroundColor
+        self.filterBackgroundColor = filterBackgroundColor
+        self.selectionsBackgroundColor = selectionsBackgroundColor
+        self.bottomMenuItemBackgroundColor = bottomMenuItemBackgroundColor
+        self.bottomMenuItemSelectedTextColor = bottomMenuItemSelectedTextColor
+        self.bottomMenuItemUnselectedTextColor = bottomMenuItemUnselectedTextColor
+        self.cropOverlayColor = cropOverlayColor
+        self.defaultNavigationBarColor = defaultNavigationBarColor
+        self.trimmerMainColor = trimmerMainColor
+        self.trimmerHandleColor = trimmerHandleColor
+        self.positionLineColor = positionLineColor
+        self.coverSelectorBorderColor = coverSelectorBorderColor
+        self.progressBarTrackColor = progressBarTrackColor
+        self.progressBarCompletedColor = progressBarCompletedColor
+        self.albumBarTintColor = albumBarTintColor
+        self.albumTintColor = albumTintColor
+        self.albumTitleColor = albumTitleColor
+    }
+    
     
     // MARK: - Common
     
