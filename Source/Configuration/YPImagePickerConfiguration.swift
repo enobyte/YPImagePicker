@@ -108,6 +108,9 @@ public struct YPImagePickerConfiguration {
     
     /// Defines the quality of video when camera recording from image picker
     public var imagePickerVideoQuality: UIImagePickerController.QualityType = .typeMedium
+    
+    /// Defines the quality of video when camera recording from image picker
+    public var videoExportPreset: String = .typeMedium
 
     /// Defines the preferredStatusBarAppearance
     public var preferredStatusBarStyle = UIStatusBarStyle.default
