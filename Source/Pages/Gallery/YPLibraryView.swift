@@ -263,6 +263,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? mediaTypes
         imagePicker.sourceType = .camera
+        imagePicker.videoQuality = YPImagePickerConfiguration.shared.imagePickerVideoQuality
         from.present(imagePicker, animated: true, completion: nil)
     }
     
