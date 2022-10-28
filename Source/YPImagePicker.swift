@@ -54,6 +54,11 @@ open class YPImagePicker: UINavigationController {
     public func pausePlayer() {
         picker.libraryVC?.pausePlayer()
     }
+    
+    public func resumePlayer() {
+        guard (picker.libraryVC?.v.assetZoomableView.isVideoMode ?? false) else { return }
+        picker.libraryVC?.v.assetZoomableView.videoView.play()
+    }
 
     // MARK: - Private
 
