@@ -50,6 +50,10 @@ open class YPImagePicker: UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return YPImagePickerConfiguration.shared.preferredStatusBarStyle
     }
+    
+    public func pausePlayer() {
+        picker.libraryVC?.pausePlayer()
+    }
 
     // MARK: - Private
 
