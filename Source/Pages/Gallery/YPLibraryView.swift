@@ -251,6 +251,7 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
+        imagePicker.videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset
         from.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -263,6 +264,8 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? mediaTypes
         imagePicker.sourceType = .camera
+        imagePicker.videoQuality = YPImagePickerConfiguration.shared.imagePickerVideoQuality
+        imagePicker.videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset
         from.present(imagePicker, animated: true, completion: nil)
     }
     

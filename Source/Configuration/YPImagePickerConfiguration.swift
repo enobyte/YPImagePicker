@@ -105,6 +105,12 @@ public struct YPImagePickerConfiguration {
     
     /// Defines if the bottom bar should be hidden when showing the picker. Default is false.
     public var hidesBottomBar = false
+    
+    /// Defines the quality of video when camera recording from image picker
+    public var imagePickerVideoQuality: UIImagePickerController.QualityType = .typeMedium
+    
+    /// Defines the quality of video when camera recording from image picker
+    public var videoExportPreset: String = AVAssetExportPresetMediumQuality
 
     /// Defines the preferredStatusBarAppearance
     public var preferredStatusBarStyle = UIStatusBarStyle.default
