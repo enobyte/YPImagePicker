@@ -251,7 +251,9 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
-        imagePicker.videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset
+        if let videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset {
+            imagePicker.videoExportPreset = videoExportPreset
+        }
         from.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -264,8 +266,12 @@ public class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) ?? mediaTypes
         imagePicker.sourceType = .camera
-        imagePicker.videoQuality = YPImagePickerConfiguration.shared.imagePickerVideoQuality
-        imagePicker.videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset
+        if let videoQuality = YPImagePickerConfiguration.shared.imagePickerVideoQuality {
+            imagePicker.videoQuality = videoQuality
+        }
+        if let videoExportPreset = YPImagePickerConfiguration.shared.videoExportPreset {
+            imagePicker.videoExportPreset = videoExportPreset
+        }
         from.present(imagePicker, animated: true, completion: nil)
     }
     

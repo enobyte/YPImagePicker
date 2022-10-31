@@ -107,10 +107,10 @@ public struct YPImagePickerConfiguration {
     public var hidesBottomBar = false
     
     /// Defines the quality of video when camera recording from image picker
-    public var imagePickerVideoQuality: UIImagePickerController.QualityType = .typeMedium
+    public var imagePickerVideoQuality: UIImagePickerController.QualityType? = nil
     
     /// Defines the quality of video when camera recording from image picker
-    public var videoExportPreset: String = AVAssetExportPresetMediumQuality
+    public var videoExportPreset: String? = nil
 
     /// Defines the preferredStatusBarAppearance
     public var preferredStatusBarStyle = UIStatusBarStyle.default
