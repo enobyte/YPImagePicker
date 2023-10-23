@@ -147,43 +147,46 @@ public struct YPImagePickerConfiguration {
     
     /// Migration
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.compression")
+    //@available(iOS 13.0, obsoleted: 3.0.0, renamed: "video.compression")
+    @available(iOS 13.0, *)
     public var videoCompression: String = AVAssetExportPresetHighestQuality
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.fileType")
+    //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.fileType")
+    @available(iOS 13.0, *)
     public var videoExtension: AVFileType = .mov
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.recordingTimeLimit")
+    //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.recordingTimeLimit")
+    @available(iOS 13.0, *)
     public var videoRecordingTimeLimit: TimeInterval = 60.0
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.libraryTimeLimit")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.libraryTimeLimit")
     public var videoFromLibraryTimeLimit: TimeInterval = 60.0
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.minimumTimeLimit")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.minimumTimeLimit")
     public var videoMinimumTimeLimit: TimeInterval = 3.0
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.trimmerMaxDuration")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.trimmerMaxDuration")
     public var trimmerMaxDuration: Double = 60.0
 
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "video.trimmerMinDuration")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "video.trimmerMinDuration")
     public var trimmerMinDuration: Double = 3.0
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "library.onlySquare")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "library.onlySquare")
     public var onlySquareImagesFromLibrary = false
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "library.onlySquare")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "library.onlySquare")
     public var onlySquareFromLibrary = false
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "targetImageSize")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "targetImageSize")
     public var libraryTargetImageSize = YPImageSize.original
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "library.mediaType")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "library.mediaType")
     public var showsVideoInLibrary = false
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "library.mediaType")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "library.mediaType")
     public var libraryMediaType = YPlibraryMediaType.photo
     
-    @available(iOS 13, obsoleted: 3.0.0, renamed: "library.maxNumberOfItems")
+    @available(iOS 13.0, *) //@available(iOS 13, obsoleted: 3.0.0, renamed: "library.maxNumberOfItems")
     public var maxNumberOfItems = 1
     
 }
